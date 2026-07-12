@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Character Encoding -->
+    <meta charset="UTF-8">
+
+    <!-- Responsive Website -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Website Title -->
+    <title>Freelance Invoice Generator</title>
+
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+
+    <div id="printArea">
+    <div class="container">
+
+        <!-- ================= Header ================= -->
+<header class="header">
+
+    <div class="logo">
+        <i class="fa-solid fa-file-invoice-dollar"></i>
+        <h1>Freelance Invoice Generator</h1>
+    </div>
+
+    <div class="header-right">
+
+        <div class="invoice-number">
+            <span>Invoice #</span>
+            <strong id="invoiceNo">INV-1001</strong>
+        </div>
+
+        <button id="themeToggle" class="theme-btn">
+    <i class="fa-solid fa-moon"></i>
+</button>
+
+    </div>
+
+</header>
+<!-- ================= Company Information ================= -->
+
+<section class="company-info">
+
+    <h2>Your Business Information</h2>
+
+    <div class="company-grid">
+
+        <div class="logo-box">
+
+            <img id="logoPreview" src="" alt="Logo Preview">
+
+            <input type="file" id="logoInput" accept="image/*">
+
+        </div>
+
+        <div class="company-fields">
+
+            <div class="input-group">
+                <label>Your Name</label>
+                <input type="text" id="ownerName" placeholder="John Smith">
+            </div>
+
+            <div class="input-group">
+                <label>Business Name</label>
+                <input type="text" id="businessName" placeholder="ABC Solutions">
+            </div>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="businessEmail">
+            </div>
+
+            <div class="input-group">
+                <label>Phone</label>
+                <input type="text" id="businessPhone">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= Invoice Details ================= -->
+
+<section class="invoice-details">
+
+    <h2>Invoice Details</h2>
+
+    <div class="details-grid">
+
+        <div class="input-group">
+            <label for="invoiceNoInput">Invoice Number</label>
+            <input
+                type="text"
+                id="invoiceNoInput"
+                value="INV-1001"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="invoiceDate">Invoice Date</label>
+            <input
+                type="date"
+                id="invoiceDate"
+            >
+        </div>
+
+        <div class="input-group">
+            <label for="dueDate">Due Date</label>
+            <input
+                type="date"
+                id="dueDate"
+            >
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= Client Information ================= -->
+
+<section class="client-info">
+
+    <h2>Client Information</h2>
+
+    <div class="client-grid">
+
+        <div class="input-group">
+            <label for="clientName">Client Name</label>
+            <input type="text" id="clientName" placeholder="Enter client's full name">
+        </div>
+
+        <div class="input-group">
+            <label for="clientEmail">Email Address</label>
+            <input type="email" id="clientEmail" placeholder="example@email.com">
+        </div>
+
+        <div class="input-group">
+            <label for="clientPhone">Phone Number</label>
+            <input type="tel" id="clientPhone" placeholder="+92 300 1234567">
+        </div>
+
+        <div class="input-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" placeholder="Company Name">
+        </div>
+
+        <div class="input-group full-width">
+            <label for="clientAddress">Address</label>
+            <textarea id="clientAddress" rows="4" placeholder="Enter client's complete address"></textarea>
+        </div>
+
+    </div>
+
+</section>
+<!-- ================= Services ================= -->
+
+<section class="services">
+
+    <h2>Services</h2>
+    <div class="table-wrapper">
+
+    <table id="invoiceTable">
+
+        <thead>
+
+            <tr>
+
+                <th>Description</th>
+
+                <th>Quantity</th>
+
+                <th>Rate ($)</th>
+
+                <th>Amount ($)</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="invoiceBody">
+
+            <tr>
+
+                <td>
+                    <input type="text" placeholder="Website Design">
+                </td>
+
+                <td>
+                    <input type="number" class="qty" value="1" min="1">
+                </td>
+
+                <td>
+                    <input type="number" class="rate" value="0" min="0">
+                </td>
+
+                <td>
+                    <input type="text" class="amount" value="0" readonly>
+                </td>
+
+                <td>
+
+                    <button class="delete-btn">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    </div>
+
+    <button id="addRow" class="add-btn">
+        <i class="fa-solid fa-plus"></i>
+        Add Service
+    </button>
+
+</section>
+
+<!-- ================= Invoice Summary ================= -->
+
+<section class="summary">
+
+    <h2>Invoice Summary</h2>
+
+    <div class="summary-box">
+
+        <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotal">$0.00</strong>
+        </div>
+
+        <div class="summary-row">
+
+            <label for="tax">Tax (%)</label>
+
+            <input
+                type="number"
+                id="tax"
+                value="10"
+                min="0"
+            >
+
+        </div>
+
+        <div class="summary-row">
+
+            <label for="discount">Discount ($)</label>
+
+            <input
+                type="number"
+                id="discount"
+                value="0"
+                min="0"
+            >
+
+        </div>
+
+        <hr>
+
+        <div class="summary-row total">
+
+            <span>Grand Total</span>
+
+            <strong id="grandTotal">$0.00</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= Action Buttons ================= -->
+
+<section class="actions">
+
+    <button id="saveInvoice" class="save-btn">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save Invoice
+    </button>
+
+    <button id="printInvoice" class="print-btn">
+        <i class="fa-solid fa-print"></i>
+        Print
+    </button>
+
+    <button id="clearInvoice" class="clear-btn">
+        <i class="fa-solid fa-trash"></i>
+        Clear
+    </button>
+
+    <button id="downloadPDF" class="pdf-btn">
+    <i class="fa-solid fa-file-pdf"></i>
+    Download PDF
+</button>
+
+</section>
+<section class="invoice-footer">
+
+    <h3>Thank You For Your Business!</h3>
+
+    <p>
+        Please make the payment within 30 days.
+    </p>
+
+</section>
+
+
+
+
+    </div>
+    </div>
+
+    <!-- Main JavaScript -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="app.js"></script>
+
+    <!-- Local Storage -->
+    <script src="storage.js"></script>
+
+    <!-- Print Function -->
+    <script src="print.js"></script>
+
+    <script src="pdf.js"></script>
+
+    <!-- ================= Toast Notification ================= -->
+
+<div id="toast" class="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Invoice Saved Successfully
+    </span>
+
+</div>
+
+</body>
+
+</html>
